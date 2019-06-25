@@ -1,0 +1,163 @@
+
+@font-face { 
+    font-family: "LemonYellowSun"; 
+    src: url('assets/LemonYellowSun.otf'); 
+  } 
+  
+  *{
+    font-family: LemonYellowSun
+  }
+  
+  #navbar {
+      padding-top: 0;
+      
+      #menu {
+        ul {
+          margin: 5px;        
+          li {
+            float: left;
+            margin: 5px;  
+            u {
+              font-family: monospace;
+              font-size: 13px;
+            }
+          }
+        }
+      }
+  }
+  #title {
+    display: none;  
+    margin-bottom: 0;
+    text-align: center;
+    &+ div{
+      display: none;
+      justify-content: space-evenly;
+      align-items: center;
+      letter-spacing: 5px;
+    }
+    @media screen and (min-width:510px){
+      display: block;
+      &+ div {
+        display: flex;
+      }
+    }
+  }
+  #title-mobile {
+    h1 {
+      margin: 0
+    }
+  }
+  #price-origin {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    h3 {
+      letter-spacing: 5px;
+    }
+  }
+  @media screen and (min-width:510px){
+    #title-mobile, #price-origin {
+      display: none
+    }
+  }
+  #main-slider {
+    position: relative;
+    svg {
+      position: absolute;
+      top: 45%;
+      cursor: pointer;
+
+      &#next {
+          right: 0px;
+      }
+      &#prev {
+          left: -30px;
+          transform: rotate(180deg);
+      }
+    }
+    .siema {
+      max-width: 89vw;
+    }
+  }
+  #sizes {
+    >.col {
+      &:nth-child(2n) {
+        border-left: 1px solid black
+      }
+      >.row {
+        display: flex;
+        align-items: center;
+      }
+    }
+    #size {
+      text-align: right;
+  
+      p {
+        font-size: 8em;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+  
+        @media (max-width: 510px) {
+          font-size: 3em;
+        }
+      }
+      .xl {
+        font-size: 2em;
+        line-height: 2em;
+      }
+  
+    }
+    .large {
+      display: none
+    }
+    @media screen and (min-width:510px){
+  
+      span {
+        font-weight: bold
+      }
+      .large {
+        display: block
+      }
+      .small {
+        display: none
+      }
+      .xl {
+        font-size: 6em !important;
+      }
+    }
+  } 
+  #description {
+    font-size: 2em
+  }
+  #left {
+    padding: 1em
+  }
+  img {
+      width: 100%;
+  }
+  .select-wrapper {
+    margin: 2em 0;
+    &+label {
+      font-size: 2em;
+    }
+  }
+  .dropdown-content li > a, .dropdown-content li > span {
+    font-size: 22px;
+    padding: 8px 16px;
+    line-height: 20px;
+  }
+  .dropdown-content li {
+    min-height: 0;
+  }
+  .dropdown-content li.optgroup-option span{
+    color: rgba(0, 0, 0, 0.58);
+  }
+  .select-dropdown li.optgroup > span {
+    color: #26a69a;
+  }
+  input.select-dropdown.dropdown-trigger {
+    color: #26a69a;
+    font-family: LemonYellowSun;
+    font-size: 30px;
+  }
