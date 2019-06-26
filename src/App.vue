@@ -19,19 +19,16 @@
         <div class="row">
             <div class="input-field col s12 m12 l12 xl12">
                 <select v-model="selected" v-on:change="goToOption">
-                  <optgroup label="Meluna">
-                      <option value="meluna/soft">Soft</option>
-                      <option value="meluna/classic">Classic</option>
-                      <option value="meluna/sport">Sport</option>
-                  </optgroup>
-                  <option value="prueba/corta">Merula</option>
-                  <optgroup label="Yuuki">
-                      <option value="yuuki/classic">Classic</option>
-                      <option value="yuuki/rainbow">Rainbow</option>
-                  </optgroup>
+                    <optgroup v-for="(product, key) in products['cups']" :key="key" v-bind:label="key" v-if="Object.keys(product['models']).length>1">
+                        <option v-for="(model, k) in product['models']" :key="k" v-bind:value="key+'/'+k">{{k}}</option>
+                    </optgroup>
+                    <option v-for="(product, key) in products['cups']" :key="key" v-bind:value="key" v-if="Object.keys(product['models']).length==1">{{key}}</option>
                 </select> 
                 <label>Otras marcas disponibles</label>
             </div>
+        </div>
+        <div class="row">
+            <!-- {{ Object.keys(products["cups"]["meluna"]["models"]).length }} -->
         </div>
         <div class="row">
             <div id="left" class="col m6">
@@ -44,7 +41,7 @@
                         <img src="@/assets/img/meluna/classic/2.jpg">
                         <img src="@/assets/img/meluna/classic/3.jpg">
                         <img src="@/assets/img/meluna/classic/4.jpg">
-                        <img src="@/assets/img/meluna/classic/5.jpg">
+                        <img src="@/assets/img/meluna/classic/white.jpg">
                     </div>
                     <svg id="prev" width="50" height="50" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                         <g fill="#26a69a" fill-rule="evenodd">
@@ -283,7 +280,8 @@ export default {
   },
   data: function () {
     return {
-      selected: 'meluna/classic'
+      selected: this.selected,
+      products: products
     }
   },
   methods: {
@@ -292,6 +290,7 @@ export default {
     }
   },
   mounted() {
+    this.selected = location.pathname.substring(1)?location.pathname.substring(1):'meluna/classic'
     this.mySiema = new Siema({selector: '.siema'})
     document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
     document.querySelector('#next').addEventListener('click', () => this.mySiema.next());

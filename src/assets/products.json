@@ -1,22 +1,57 @@
 {
-    "cups": [{
-        "brand": "meluna",
-        "material": "TPE de grado médico hipoalergénico.",
-        "origin": "Alemania",
-        "certified": "1",
-        "models": [{
-            "name": "classic",
-            "price": 72000,
-            "sizes": [{
-                "size": "s",
-                "diameter": 45,
-                "length": 38,
-                "capacity": 23,
-                "stem": 10,
-                "shorty": "yes"
-            }],
-            "images": [" yellow","blue"],
-            "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
-        }]
-    }]
+    "cups": {
+        "meluna": {
+            "material": "TPE de grado médico hipoalergénico.",
+            "origin": "Alemania",
+            "certified": "1",
+            "models": {
+                "classic": {
+                    "price": 72000,
+                    "sizes": [{
+                        "size": "s",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 23,
+                        "stem": 10,
+                        "shorty": "yes"
+                    }],
+                    "images": [" yellow","white", "green", "purple", "red"],
+                    "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
+                },
+                "soft": {
+                    "price": 72000,
+                    "sizes": [{
+                        "size": "s",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 23,
+                        "stem": 10,
+                        "shorty": "yes"
+                    }],
+                    "images": [" yellow","white", "green", "purple", "red"],
+                    "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
+                }
+            }
+        },
+        "merula": {
+            "material": "TPE de grado médico hipoalergénico.",
+            "origin": "Alemania",
+            "certified": "1",
+            "models": {
+                "classic": {
+                    "price": 72000,
+                    "sizes": [{
+                        "size": "s",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 23,
+                        "stem": 10,
+                        "shorty": "yes"
+                    }],
+                    "images": [" yellow","white", "green", "purple", "red"],
+                    "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
+                }
+            }
+        }
+    }
 }
