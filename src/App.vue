@@ -35,7 +35,7 @@
                 <div class="row" id="title-mobile">
                     <h1>{{ `${loaded.brand} ${loaded.model}` }}</h1>
                 </div>
-                <div class="row" id="main-slider">
+                <div class="row" id="main-slider" style="background-image: url('@/assets/img/eclipse-loader.svg');">
                     <div class="siema">
                         <img v-for="(image, key) in loaded.images" :key="key" :src="getImage(image)" :alt="`${loaded.brand} ${loaded.model} ${image} cup`">
                     </div>
@@ -282,14 +282,26 @@ export default {
     }
   },
   methods: {
-    reloadSiema: function() {
+      reloadSiema: function() {
+        document.querySelector(".siema").style.height = null
+        var height = document.querySelector(".siema").offsetHeight
         this.mySiema.destroy(true)  
+        document.querySelector(".siema").setAttribute("style", "height: "+ height + "px")
+        console.log('height', height);
+        document.querySelector('#prev').removeEventListener('click', () => this.mySiema.prev(), false);
+        document.querySelector('#next').removeEventListener('click', () => this.mySiema.prev(), false);
 
         setTimeout(function() { 
-            this.mySiema = new Siema({selector: '.siema', loop: true})
+            this.mySiema = new Siema({
+                selector: '.siema',
+                loop: true,
+                easing: 'cubic-bezier(.17,.67,.22,1.34)'
+            })
             document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
             document.querySelector('#next').addEventListener('click', () => this.mySiema.next());
-        }, 800);
+
+            document.querySelector(".siema").style.height = null
+        }, 1100);
     },
     goToOption: function() {
         history.pushState(null, '', `/${this.selected}`)
@@ -317,7 +329,10 @@ export default {
     this.loadSelected()
   },
   mounted() {
-    this.mySiema = new Siema({selector: '.siema', loop: true})
+    this.mySiema = new Siema({
+        selector: '.siema',
+        loop: true
+    })
     document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
     document.querySelector('#next').addEventListener('click', () => this.mySiema.next());
   },
@@ -326,12 +341,11 @@ export default {
   beforeDestroy() {
   }
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, {});
 });
-
-
 </script>
  
 <style lang="scss">
