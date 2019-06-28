@@ -22,26 +22,22 @@
                     <optgroup v-for="(product, key) in products['cups']" :key="key" v-bind:label="key" v-if="Object.keys(product['models']).length>1">
                         <option v-for="(model, k) in product['models']" :key="k" v-bind:value="key+'/'+k">{{k}}</option>
                     </optgroup>
-                    <option v-for="(product, key) in products['cups']" :key="key" v-bind:value="key" v-if="Object.keys(product['models']).length==1">{{key}}</option>
+                    <option v-for="(product, key) in products['cups']" :key="key" v-bind:value="key+'/'+Object.keys(product['models'])[0]" v-if="Object.keys(product['models']).length==1">{{key}}</option>
                 </select> 
                 <label>Otras marcas disponibles</label>
             </div>
         </div>
         <div class="row">
-            <!-- {{ Object.keys(products["cups"]["meluna"]["models"]).length }} -->
+            {{ loaded }}
         </div>
-        <div class="row">
+        <div class="row" v-if="loaded">
             <div id="left" class="col m6">
                 <div class="row" id="title-mobile">
-                    <h1>MELUNA CLASSIC</h1>
+                    <h1>{{ `${loaded.brand} ${loaded.model}` }}</h1>
                 </div>
                 <div class="row" id="main-slider">
                     <div class="siema">
-                        <img src="@/assets/img/meluna/classic/1.jpg">
-                        <img src="@/assets/img/meluna/classic/2.jpg">
-                        <img src="@/assets/img/meluna/classic/3.jpg">
-                        <img src="@/assets/img/meluna/classic/4.jpg">
-                        <img src="@/assets/img/meluna/classic/white.jpg">
+                        <img v-for="(image, key) in loaded.images" :key="key" :src="getImage(image)" :alt="`${loaded.brand} ${loaded.model} ${image} cup`">
                     </div>
                     <svg id="prev" width="50" height="50" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
                         <g fill="#26a69a" fill-rule="evenodd">
@@ -88,7 +84,7 @@
             </div>
             <div class="col m6">
                 <div class="row" id="title">
-                    <h1>MELUNA CLASSIC</h1>
+                    <h1>{{ `${loaded.brand} ${loaded.model}` }}</h1>
                 </div>
                 <div class="row">
                     <h3>$72.000</h3>
@@ -281,26 +277,60 @@ export default {
   data: function () {
     return {
       selected: this.selected,
-      products: products
+      products: products,
+      loaded: this.loaded
     }
   },
   methods: {
+    reloadSiema: function() {
+        this.mySiema.destroy(true)  
+
+        setTimeout(function() { 
+            this.mySiema = new Siema({selector: '.siema', loop: true})
+            document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
+            document.querySelector('#next').addEventListener('click', () => this.mySiema.next());
+        }, 800);
+    },
     goToOption: function() {
-      history.pushState(null, '', `/${this.selected}`);   
+        history.pushState(null, '', `/${this.selected}`)
+        this.loadSelected()
+    },
+    loadSelected: function() {
+        const [brand, model] = this.selected.split('/')
+        this.loaded = {
+            "brand": brand,
+            "model": model,
+            "material": products["cups"][brand].material,
+            "origin": products["cups"][brand].origin,
+            "certified": products["cups"][brand].certified,
+        }
+        Object.assign(this.loaded, products["cups"][brand]["models"][model])
+    },
+    getImage(name) {
+        let image = require(`@/assets/img/${this.loaded.brand}/${this.loaded.model}/${name}.jpg`)
+        if(this.loaded.images[this.loaded.images.length-1]==name&&this.mySiema)this.reloadSiema()
+        return image
     }
   },
-  mounted() {
+  created() {
     this.selected = location.pathname.substring(1)?location.pathname.substring(1):'meluna/classic'
-    this.mySiema = new Siema({selector: '.siema'})
+    this.loadSelected()
+  },
+  mounted() {
+    this.mySiema = new Siema({selector: '.siema', loop: true})
     document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
     document.querySelector('#next').addEventListener('click', () => this.mySiema.next());
-    console.log(products)
+  },
+  update(){
+  },
+  beforeDestroy() {
   }
 }
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, {});
 });
+
 
 </script>
  

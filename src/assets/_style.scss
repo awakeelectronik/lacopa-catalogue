@@ -76,7 +76,13 @@
       }
     }
     .siema {
+      background-image: url(/img/eclipse-loader.911a0337.svg);
+      background-size: contain;
       max-width: 89vw;
+      height: 450px;
+      &> img {
+        opacity: 0;
+      }
     }
   }
   #sizes {

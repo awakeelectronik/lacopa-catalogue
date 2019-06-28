@@ -15,11 +15,11 @@
                         "stem": 10,
                         "shorty": "yes"
                     }],
-                    "images": [" yellow","white", "green", "purple", "red"],
+                    "images": ["yellow","white", "green", "purple", "red"],
                     "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
                 },
                 "soft": {
-                    "price": 72000,
+                    "price": 72500,
                     "sizes": [{
                         "size": "s",
                         "diameter": 45,
@@ -28,7 +28,7 @@
                         "stem": 10,
                         "shorty": "yes"
                     }],
-                    "images": [" yellow","white", "green", "purple", "red"],
+                    "images": ["white", "blue", "purple"],
                     "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
                 }
             }
@@ -38,8 +38,8 @@
             "origin": "Alemania",
             "certified": "1",
             "models": {
-                "classic": {
-                    "price": 72000,
+                "unique": {
+                    "price": 73000,
                     "sizes": [{
                         "size": "s",
                         "diameter": 45,
