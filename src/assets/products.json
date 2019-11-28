@@ -8,20 +8,41 @@
                 "classic": {
                     "price": 72000,
                     "sizes": [{
-                        "size": "s",
+                        "letter": "s",
                         "diameter": 45,
                         "length": 38,
-                        "capacity": 23,
-                        "stem": 10,
+                        "capacity": 93,
+                        "stem": 3,
+                        "shorty": "yes"
+                    },{
+                        "letter": "m",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 93,
+                        "stem": 3,
+                        "shorty": "yes"
+                    },{
+                        "letter": "l",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 93,
+                        "stem": 3,
+                        "shorty": "yes"
+                    },{
+                        "letter": "xl",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 93,
+                        "stem": 3,
                         "shorty": "yes"
                     }],
                     "images": ["yellow","white", "green", "purple", "red"],
-                    "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
+                    "video": "ZMHFznXLVk4"
                 },
                 "soft": {
                     "price": 72500,
                     "sizes": [{
-                        "size": "s",
+                        "letter": "s",
                         "diameter": 45,
                         "length": 38,
                         "capacity": 23,
@@ -29,27 +50,41 @@
                         "shorty": "yes"
                     }],
                     "images": ["white", "blue", "purple"],
-                    "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
+                    "video": "ZMHFznXLVk4"
                 }
             }
         },
         "merula": {
-            "material": "TPE de grado médico hipoalergénico.",
+            "material": "TPE de grado médico hipoalergénico 2.",
             "origin": "Alemania",
             "certified": "1",
             "models": {
                 "unique": {
                     "price": 73000,
                     "sizes": [{
-                        "size": "s",
+                        "letter": "s",
                         "diameter": 45,
                         "length": 38,
                         "capacity": 23,
                         "stem": 10,
                         "shorty": "yes"
+                    },{
+                        "letter": "m",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 93,
+                        "stem": 3,
+                        "shorty": "yes"
+                    },{
+                        "letter": "l",
+                        "diameter": 45,
+                        "length": 38,
+                        "capacity": 93,
+                        "stem": 3,
+                        "shorty": "yes"
                     }],
-                    "images": [" yellow","white", "green", "purple", "red"],
-                    "video": "https://www.youtube.com/watch?v=ZMHFznXLVk4"
+                    "images": ["apple","fox", "ice", "midnight", "strawberry", "sun"],
+                    "video": "RG59CSPHo84"
                 }
             }
         }

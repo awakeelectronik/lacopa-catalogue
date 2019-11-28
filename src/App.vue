@@ -35,30 +35,14 @@
                 <div class="row" id="title-mobile">
                     <h1>{{ `${loaded.brand} ${loaded.model}` }}</h1>
                 </div>
-                <div class="row" id="main-slider" style="background-image: url('@/assets/img/eclipse-loader.svg');">
-                    <div class="siema">
-                        <img v-for="(image, key) in loaded.images" :key="key" :src="getImage(image)" :alt="`${loaded.brand} ${loaded.model} ${image} cup`">
-                    </div>
-                    <svg id="prev" width="50" height="50" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#26a69a" fill-rule="evenodd">
-                            <path d="M6.646 5.354l4 4 .354.353.707-.707-.353-.354-4-4L7 4.293 6.293 5z"></path>
-                            <path d="M7.354 13.354l4-4L11.707 9 11 8.293l-.354.353-4 4-.353.354.707.707z"></path>
-                        </g>
-                    </svg>
-                    <svg id="next" width="50" height="50" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#26a69a" fill-rule="evenodd">
-                            <path d="M6.646 5.354l4 4 .354.353.707-.707-.353-.354-4-4L7 4.293 6.293 5z"></path>
-                            <path d="M7.354 13.354l4-4L11.707 9 11 8.293l-.354.353-4 4-.353.354.707.707z"></path>
-                        </g>
-                    </svg>
-                </div>
+                <Slider :loaded="loaded"></Slider>
                 <div class="row" id="price-origin">
-                    <h3>$72.000</h3>
-                    <h4>Alemania</h4>
+                    <h3>{{ loaded.price }}</h3>
+                    <h4>{{ loaded.origin }}</h4>
                 </div>
                 <div class="row">
                     <p id="description">
-                        <b>Material</b>: TPE de grado médico hipoalergénico.
+                        <b>{{ loaded.material }}</b>: {{ loaded.material }}.
                     </p>
                 </div>
                 <div class="row">
@@ -79,7 +63,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <img src="@/assets/img/certificates.jpg" alt="">
+                    <img :src='`@/assets/img/certificates.jpg`' alt="">
                 </div>
             </div>
             <div class="col m6">
@@ -87,170 +71,26 @@
                     <h1>{{ `${loaded.brand} ${loaded.model}` }}</h1>
                 </div>
                 <div class="row">
-                    <h3>$72.000</h3>
-                    <h4>Alemania</h4>
+                    <h3>{{ loaded.price }}</h3>
+                    <h4>{{ loaded.origin }}</h4>
                 </div>
                 <div class="row" id="sizes">
-                    <div class="col s6 m6 l6 xl6">
+                    <div class="col s6 m6 l6 xl6" v-for="size in loaded.sizes">
                         <div class="row">
                             <div class="col m4 s2">
                                 <div id="size">
-                                    <p>S</p>
+                                    <p>{{ size.letter }}</p>
                                 </div>
                             </div>
                             <div class="col m8 s10">
                                 <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
+                                    <p><b>{{ size.diameter }}mm </b>Diámetro</p>
+                                    <p><b>{{ size.length }}mm </b>Longitud</p>
+                                    <p><b>{{ size.capacity }}ml</b> Capacidad</p>
+                                    <p><b>{{ size.stem }}mm </b>Terminación</p>
                                 </div>
                                 <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p>M</p>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p>L</p>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p class="xl">XL</p>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p>S</p>
-                                    <span>Shorty</span>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p>M</p> 
-                                    <span>Shorty</span>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p>L</p>
-                                    <span>Shorty</span>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m6 l6 xl6">
-                        <div class="row">
-                            <div class="col m4 s2">
-                                <div id="size">
-                                    <p class="xl">XL</p> 
-                                    <span>Shorty</span>
-                                </div>
-                            </div>
-                            <div class="col m8 s10">
-                                <div class="large">
-                                    <p><b>45mm</b> Diámetro</p>
-                                    <p><b>38mm</b> Longitud</p>
-                                    <p><b>23ml</b> Capacidad</p>
-                                    <p><b>10mm</b> Terminación</p>
-                                </div>
-                                <div class="small">
-                                    <p><b>45mm</b> x <b>38mm</b> x <b>23mm</b></p>
+                                    <p><b>{{ size.diameter }}mm</b> x <b>{{ size.length }}mm</b> x <b>{{ size.capacity }}ml</b></p>
                                 </div>
                             </div>
                         </div>
@@ -264,15 +104,16 @@
 <script>
 
 /* eslint-disable */ 
-import products from '@/assets/products.json';
+import products from '@/assets/products.json'
 
 import 'materialize-css'
-import 'materialize-css/dist/css/materialize.css';
-import Siema from 'siema'
+import 'materialize-css/dist/css/materialize.css'
+import Slider from './components/Slider'
 
 export default {
   name: 'app',
   components: {
+      Slider
   },
   data: function () {
     return {
@@ -282,27 +123,6 @@ export default {
     }
   },
   methods: {
-      reloadSiema: function() {
-        document.querySelector(".siema").style.height = null
-        var height = document.querySelector(".siema").offsetHeight
-        this.mySiema.destroy(true)  
-        document.querySelector(".siema").setAttribute("style", "height: "+ height + "px")
-        console.log('height', height);
-        document.querySelector('#prev').removeEventListener('click', () => this.mySiema.prev(), false);
-        document.querySelector('#next').removeEventListener('click', () => this.mySiema.prev(), false);
-
-        setTimeout(function() { 
-            this.mySiema = new Siema({
-                selector: '.siema',
-                loop: true,
-                easing: 'cubic-bezier(.17,.67,.22,1.34)'
-            })
-            document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
-            document.querySelector('#next').addEventListener('click', () => this.mySiema.next());
-
-            document.querySelector(".siema").style.height = null
-        }, 1100);
-    },
     goToOption: function() {
         history.pushState(null, '', `/${this.selected}`)
         this.loadSelected()
@@ -317,24 +137,11 @@ export default {
             "certified": products["cups"][brand].certified,
         }
         Object.assign(this.loaded, products["cups"][brand]["models"][model])
-    },
-    getImage(name) {
-        let image = require(`@/assets/img/${this.loaded.brand}/${this.loaded.model}/${name}.jpg`)
-        if(this.loaded.images[this.loaded.images.length-1]==name&&this.mySiema)this.reloadSiema()
-        return image
     }
   },
   created() {
     this.selected = location.pathname.substring(1)?location.pathname.substring(1):'meluna/classic'
     this.loadSelected()
-  },
-  mounted() {
-    this.mySiema = new Siema({
-        selector: '.siema',
-        loop: true
-    })
-    document.querySelector('#prev').addEventListener('click', () => this.mySiema.prev());
-    document.querySelector('#next').addEventListener('click', () => this.mySiema.next());
   },
   update(){
   },
